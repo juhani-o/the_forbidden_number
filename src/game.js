@@ -1,76 +1,52 @@
-import { init, Sprite, loadImage, GameLoop, initInput, onInput} from 'kontra';
+        import Huuhaa from './huuhaa.js';
+        import introText from './assets/intro_text.svg';
 
-// Alustetaan canvas ja syötteet
-let { canvas, context } = init();
-initInput();
+        const canvas = document.getElementById('game');
+        const ctx = canvas.getContext('2d');
+        let runningStage = 0;
 
-// Enum pelitiloille
-const GameState = {
-  INIT: 'init',
-  MENU: 'menu',
-  RUNNING: 'running',
-};
+        let svgImage = new Image();
+        // Check for mobile device 
+        if (navigator.maxTouchPoints > 0) {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            canvas.style.position = 'absolute';
+            canvas.style.top = 0;
+            canvas.style.left = 0;
+        }
 
-let gameState = GameState.INIT;
-let svgImage;
+        // Ladataan SVG-tiedosto ja näytetään se canvasilla
+        function loadSVG() {
+            svgImage.src = introText;  // Muuta tämä oman SVG-tiedostosi URLiksi
+            svgImage.onload = (data) => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(svgImage, 0, 0, canvas.width, canvas.height);
+                runningStage = 1;
+            };
+        }
 
-// Ladataan SVG-kuva
-loadImage('assets/intro_text.svg').then(function(image) {
-  svgImage = image;
-  gameState = GameState.MENU;
-  console.log("Gamestate ", gameState);
-  renderMenu();  // Piirretään SVG kuva
-});
+        // Piirrä satunnaisia neliöitä
+        function drawRandomShapes() {
+            ctx.fillStyle = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 50, 50);
+        }
 
-// Funktio, joka näyttää SVG-kuvan start-menuna
-function renderMenu() {
-  if (gameState === GameState.MENU && svgImage) {
-    // Piirretään SVG kuva canvasille
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    context.drawImage(svgImage, 0, 0, canvas.width, canvas.height);
-  }
-}
+        // Klikattaessa canvasia aloita luuppi
+        canvas.addEventListener('click', () => {
+            if (runningStage == 1) {
+                runningStage = 2;
+                loop();
+            }
+        });
 
-// Sprite pelihahmolle
-let sprite = Sprite({
-  x: 100,        // alkux ja y sijainti
-  y: 80,
-  color: 'red',  // väri
-  width: 20,     // leveys
-  height: 40,    // korkeus
-  dx: 2          // liikkeen nopeus oikealle
-});
+        // Piirtoluuppi
+        function loop() {
+            if (runningStage == 2) {
+                drawRandomShapes();
+                requestAnimationFrame(loop);  // Jatketaan luuppia
+            }
+        }
 
-// Pelisilmukka
-let loop = GameLoop({
-  update: function() {
-    if (gameState === GameState.RUNNING) {
-      sprite.update();
-
-      // Kierrätetään hahmo canvasin yli
-      if (sprite.x > canvas.width) {
-        sprite.x = -sprite.width;
-      }
-    }
-  },
-  render: function() {
-    if (gameState === GameState.RUNNING) {
-      context.clearRect(0, 0, canvas.width, canvas.height);  // Tyhjennä edellinen ruutu
-      sprite.render();
-    } else if (gameState === GameState.MENU) {
-      renderMenu();  // Näytetään start-menu
-    }
-  }
-});
-
-// Klikkauksen kuuntelija, joka käynnistää pelin
-onInput('p', function() {
-  if (gameState === GameState.MENU) {
-    gameState = GameState.RUNNING;
-    console.log("Game started");
-  }
-});
-
-// Käynnistetään pelisilmukka
-loop.start();
+        // Käynnistetään SVG:n lataus ohjelman alussa
+        window.onload = loadSVG;
 

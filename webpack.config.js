@@ -24,6 +24,10 @@ module.exports = {
           loader: 'babel-loader', // Käytä Babelia nykyaikaisten JavaScript-ominaisuuksien kääntämiseen
         },
       },
+      {
+        test: /\.svg$/,  // Etsitään .svg tiedostoja
+        use: 'file-loader',  // Käytetään file-loaderia
+      },
     ],
   },
   optimization: {
@@ -62,11 +66,11 @@ module.exports = {
         </html>
       `,
     }),
-    new CopyPlugin({
-      patterns: [
-        { from: "src/assets", to: "assets"}
-      ],
-    }),
+//    new CopyPlugin({
+//      patterns: [
+//        { from: "src/assets", to: "assets"}
+//      ],
+//    }),
   ],
   devServer: {
     static: {
