@@ -1,4 +1,3 @@
-        import Huuhaa from './huuhaa.js';
         import introText from './assets/intro_text.svg';
 
         const canvas = document.getElementById('game');
