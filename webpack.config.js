@@ -26,7 +26,7 @@ module.exports = {
       },
       {
         test: /\.svg$/,  // Etsitään .svg tiedostoja
-        use: 'file-loader',  // Käytetään file-loaderia
+       use: 'raw-loader', 
       },
     ],
   },

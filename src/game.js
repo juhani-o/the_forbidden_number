@@ -22,7 +22,8 @@
         }
 
         function startGame() {
-          processSVG(introText);
+
+          processSVG();
           runningStage = 1;
         }
 

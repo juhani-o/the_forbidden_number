@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="54.196503mm"
+   height="54.196503mm"
+   viewBox="0 0 54.196503 54.196503"
+   version="1.1"
+   id="svg2360"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2357">
+    <filter
+       y="-0.16575319"
+       height="1.3315064"
+       style="color-interpolation-filters:sRGB"
+       id="filter293"
+       x="-0.11311526"
+       width="1.2262305">
+      <feMorphology
+         radius="7"
+         operator="dilate"
+         result="result8"
+         in="SourceGraphic"
+         id="feMorphology283" />
+      <feComposite
+         in2="result8"
+         result="result10"
+         in="SourceGraphic"
+         operator="arithmetic"
+         k1="0.5"
+         k3="0.5"
+         id="feComposite285"
+         k2="0"
+         k4="0" />
+      <feTurbulence
+         result="result11"
+         type="fractalNoise"
+         numOctaves="3"
+         baseFrequency="0.07"
+         id="feTurbulence287" />
+      <feDisplacementMap
+         result="result12"
+         in2="result11"
+         in="result10"
+         xChannelSelector="R"
+         scale="10"
+         id="feDisplacementMap289"
+         yChannelSelector="A" />
+      <feComposite
+         operator="arithmetic"
+         result="result13"
+         in="SourceGraphic"
+         in2="result12"
+         k1="0.25"
+         k2="0.25"
+         k3="0.75"
+         id="feComposite291"
+         k4="0" />
+    </filter>
+    <rect
+       x="56.128895"
+       y="256.22748"
+       width="377.44217"
+       height="265.69138"
+       id="rect2430" />
+    <filter
+       y="-0.075000003"
+       height="1.15"
+       style="color-interpolation-filters:sRGB"
+       id="filter3077"
+       x="-0.075000003"
+       width="1.15">
+      <feMorphology
+         radius="7"
+         operator="dilate"
+         result="result8"
+         in="SourceGraphic"
+         id="feMorphology3067" />
+      <feComposite
+         in2="result8"
+         result="result10"
+         in="SourceGraphic"
+         operator="arithmetic"
+         k1="0.5"
+         k3="0.5"
+         id="feComposite3069"
+         k2="0"
+         k4="0" />
+      <feTurbulence
+         result="result11"
+         type="fractalNoise"
+         numOctaves="3"
+         baseFrequency="0.07"
+         id="feTurbulence3071" />
+      <feDisplacementMap
+         result="result12"
+         in2="result11"
+         in="result10"
+         xChannelSelector="R"
+         scale="10"
+         id="feDisplacementMap3073"
+         yChannelSelector="A" />
+      <feComposite
+         operator="arithmetic"
+         result="result13"
+         in="SourceGraphic"
+         in2="result12"
+         k1="0.25"
+         k2="0.25"
+         k3="0.75"
+         id="feComposite3075"
+         k4="0" />
+    </filter>
+  </defs>
+  <g
+     id="layer1"
+     transform="translate(-0.24964223,-0.57497746)">
+    <rect
+       style="fill:none;stroke:#ffffff;stroke-width:1;stroke-miterlimit:3.5;stroke-dasharray:none;stroke-dashoffset:0;filter:url(#filter3077)"
+       id="rect3065"
+       width="100"
+       height="100"
+       x="38.945461"
+       y="155.96724"
+       ry="12.838744"
+       transform="matrix(0.47127397,0,0,0.47127397,-14.569785,-69.393771)" />
+    <g
+       id="g2428"
+       transform="matrix(4.9389723,0,0,4.9389723,213.12322,-433.66854)"
+       style="fill:#ffffff;stroke:#ffffff">
+      <text
+         xml:space="preserve"
+         transform="matrix(0.08234173,0,0,0.08234173,-58.070119,69.847638)"
+         id="text2426"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64px;font-family:'URW Bookman';-inkscape-font-specification:'URW Bookman';text-align:center;white-space:pre;shape-inside:url(#rect2430);display:inline;fill:#ffffff;fill-opacity:1;stroke:#ffffff;filter:url(#filter293)"
+         x="1.6000228"
+         y="0"><tspan
+           x="205.16956"
+           y="310.11456"
+           id="tspan1594">13</tspan></text>
+    </g>
+  </g>
+</svg>
