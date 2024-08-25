@@ -1,4 +1,5 @@
-import svgContent from './assets/numberandtext.svg';
+import svgContent from './assets/intro_text.svg';
+
 function modifySVGText(svgString, newText) {
     const parser = new DOMParser();
     const svgDocument = parser.parseFromString(svgString, 'image/svg+xml');
@@ -12,21 +13,24 @@ function modifySVGText(svgString, newText) {
     return serializer.serializeToString(svgDocument);
 }
 
-function drawSVGToCanvas(svgText) {
+function drawSVGToCanvas(svgText, blur) {
     const canvas = document.getElementById('game');
     const ctx = canvas.getContext('2d');
-
+    ctx.filter = "blur(" + blur + "px)";
     const img = new Image();
     const svgData = 'data:image/svg+xml;base64,' + btoa(svgText);
     img.onload = function() {
-        ctx.drawImage(img, 0, 0, canvas.width / 10 , canvas.height / 10); // Piirretään kuva canvakseen
+        const w = 300;
+        const h = w * (img.height / img.width);
+        ctx.fillRect(0,0,canvas.width, canvas.height)
+        ctx.drawImage(img, (canvas.width / 2) - (w / 2), (canvas.height / 2) - (h / 2) + (blur * 5), w, h); // Piirretään kuva canvakseen
     };
     img.src = svgData;
 
 }
 
-export const processSVG = () => {
+export const processSVG = (blur) => {
     const modifiedSVG = modifySVGText(svgContent, "13"); // Muokataan SVG
-    drawSVGToCanvas(modifiedSVG); // Piirretään SVG canvakseen
+    drawSVGToCanvas(modifiedSVG, blur); // Piirretään SVG canvakseen
 };
 

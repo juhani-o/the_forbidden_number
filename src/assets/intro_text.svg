@@ -3,39 +3,12 @@
 
 <svg
    width="32.065971mm"
-   height="22.856384mm"
-   viewBox="0 0 32.065972 22.856384"
+   height="22.856386mm"
+   viewBox="0 0 32.065972 22.856386"
    version="1.1"
    id="svg5"
-   sodipodi:docname="intro_text.svg"
-   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
-   inkscape:export-filename="intro_text.svg"
-   inkscape:export-xdpi="96"
-   inkscape:export-ydpi="96"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
-     id="namedview16"
-     pagecolor="#000000"
-     bordercolor="#000000"
-     borderopacity="0.25"
-     inkscape:showpageshadow="2"
-     inkscape:pageopacity="0"
-     inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1"
-     inkscape:document-units="mm"
-     showgrid="false"
-     inkscape:zoom="3.8565995"
-     inkscape:cx="26.44817"
-     inkscape:cy="63.008875"
-     inkscape:window-width="3440"
-     inkscape:window-height="1368"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
   <defs
      id="defs2">
     <rect
@@ -45,12 +18,12 @@
        height="265.69138"
        id="rect113" />
     <filter
-       y="-0.033904216"
-       height="1.0678084"
+       y="-0.036325946"
+       height="1.0726519"
        style="color-interpolation-filters:sRGB"
        id="filter293"
-       x="-0.023705014"
-       width="1.04741">
+       x="-0.02539823"
+       width="1.0507965">
       <feMorphology
          radius="7"
          operator="dilate"
@@ -95,31 +68,24 @@
   </defs>
   <g
      id="layer1"
-     transform="matrix(0.22938044,0,0,0.22938044,-9.8240525,5.8253222)"
-     inkscape:export-filename="intro_text.svg"
-     inkscape:export-xdpi="96"
-     inkscape:export-ydpi="96"
+     transform="matrix(0.22938044,0,0,0.22938044,-9.8240525,5.8253242)"
      style="fill:#ffffff;stroke:#000000">
     <text
        xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,19.353317,-93.162794)"
+       transform="matrix(0.44842836,0,0,0.44842836,2.7444766,-140.3607)"
        id="text111"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64px;font-family:'URW Bookman';-inkscape-font-specification:'URW Bookman';text-align:center;white-space:pre;shape-inside:url(#rect113);display:inline;fill:#ffffff;stroke:#000000;filter:url(#filter293)"
        x="1.6000228"
-       y="0"
-       inkscape:label="forbidden"
-       inkscape:export-filename="intro_text.svg"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96"><tspan
+       y="0"><tspan
          x="186.54559"
          y="310.11456"
-         id="tspan925">The
+         id="tspan903">The
 </tspan><tspan
          x="96.561523"
          y="390.11456"
-         id="tspan927">forbidden </tspan><tspan
+         id="tspan905">forbidden </tspan><tspan
          x="121.32953"
          y="470.11456"
-         id="tspan929">number</tspan></text>
+         id="tspan907">number</tspan></text>
   </g>
 </svg>
