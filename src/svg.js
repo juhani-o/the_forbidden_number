@@ -1,5 +1,3 @@
-import svgContent from './assets/intro_text.svg';
-
 function modifySVGText(svgString, newText) {
     const parser = new DOMParser();
     const svgDocument = parser.parseFromString(svgString, 'image/svg+xml');
@@ -13,12 +11,12 @@ function modifySVGText(svgString, newText) {
     return serializer.serializeToString(svgDocument);
 }
 
-function drawSVGToCanvas(svgText, blur) {
+function drawSVGToCanvas(svg, blur) {
     const canvas = document.getElementById('game');
     const ctx = canvas.getContext('2d');
     ctx.filter = "blur(" + blur + "px)";
     const img = new Image();
-    const svgData = 'data:image/svg+xml;base64,' + btoa(svgText);
+    const svgData = 'data:image/svg+xml;base64,' + btoa(svg);
     img.onload = function() {
         const w = 300;
         const h = w * (img.height / img.width);
@@ -29,8 +27,8 @@ function drawSVGToCanvas(svgText, blur) {
 
 }
 
-export const processSVG = (blur) => {
+export const processSVG = (svgContent) => {
     const modifiedSVG = modifySVGText(svgContent, "13"); // Muokataan SVG
-    drawSVGToCanvas(modifiedSVG, blur); // Piirretään SVG canvakseen
+    drawSVGToCanvas(modifiedSVG, 0); // Piirretään SVG canvakseen
 };
 
