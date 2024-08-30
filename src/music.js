@@ -6,7 +6,7 @@ var ac =
   // get the current Web Audio timestamp (this is when playback should begin)
   when = ac.currentTime,
   // set the tempo
-  tempo = 75, // Hidas ja uhkaava tempo
+  tempo = 100, // Hidas ja uhkaava tempo
   // initialize some vars
   sequence1,
   sequence2,

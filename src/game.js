@@ -1,6 +1,6 @@
 import intro from "./assets/intro_text.svg";
 import click from "./assets/click.svg";
-import { processSVG } from "./svg.js";
+import { drawSVG } from "./svg.js";
 import { Note, Sequence } from "./TinyMusic.min.js";
 import { playSong } from "./music.js";
 
@@ -34,34 +34,41 @@ function drawRandomShapes() {
   );
 }
 
+function staticLoop() {
+  switch (runningStage) {
+    case 0:
+      drawSVG(click, {});
+      break;
+    case 1:
+      drawSVG(intro, {});
+      playSong();
+      break;
+    case 2:
+      requestAnimationFrame(loop);
+    default:
+      break;
+  }
+}
+
+function introScene() {
+  drawSVG(click, { x: 0, y: 0 });
+}
+
 function startGame() {
   canvas.addEventListener("click", () => {
     runningStage = runningStage + 1;
+    staticLoop();
   });
+  staticLoop();
 }
 
-// Piirtoluuppi
 function loop(timestamp) {
   const timeSinceLastRender = timestamp - lastRenderTime;
   if (timeSinceLastRender >= frameDuration) {
     lastRenderTime = timestamp;
-    switch (runningStage) {
-      case 0:
-        processSVG(click);
-        break;
-      case 1:
-        playSong();
-        processSVG(intro);
-        break;
-      case 2:
-        drawRandomShapes();
-      default:
-        break;
-    }
+    drawRandomShapes();
   }
-  requestAnimationFrame(loop); // Jatketaan luuppia
+  requestAnimationFrame(loop);
 }
-requestAnimationFrame(loop);
 
-// Käynnistetään SVG:n lataus ohjelman alussa
 window.onload = startGame;
