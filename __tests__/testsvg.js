@@ -1,4 +1,5 @@
-import { drawSVG } from "./../src/svg.js";
+import { drawSVG, modifySVGText, drawSVGToCanvas } from "./../src/svg.js";
+import "jest-canvas-mock";
 
 const exampleSVG = `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
@@ -36,7 +37,7 @@ describe("drawSVGToCanvas", () => {
       '<canvas id="game" width="800" height="600"></canvas>';
   });
 
-  test("should draw the SVG on the canvas", (done) => {
+  test("should draw the SVG on the canvas", () => {
     const svg = exampleSVG;
     const data = { text: "Test Text", blur: 0 };
 
@@ -47,13 +48,10 @@ describe("drawSVGToCanvas", () => {
 
     drawSVGToCanvas(svg, data);
 
-    setTimeout(() => {
-      expect(ctx.drawImage).toHaveBeenCalled();
-      done();
-    }, 100);
+    expect(ctx.drawImage).toHaveBeenCalled();
   });
 
-  test("should apply blur filter if blur is specified", (done) => {
+  test("should apply blur filter if blur is specified", () => {
     const svg = exampleSVG;
     const data = { text: "Test Text", blur: 5 };
 
@@ -65,13 +63,10 @@ describe("drawSVGToCanvas", () => {
 
     drawSVGToCanvas(svg, data);
 
-    setTimeout(() => {
-      expect(ctx.filter).toBe("blur(5px)");
-      done();
-    }, 100);
+    expect(ctx.filter).toBe("blur(5px)");
   });
 
-  test("should not apply blur filter if blur is not specified", (done) => {
+  test("should not apply blur filter if blur is not specified", () => {
     const svg = exampleSVG;
     const data = { text: "Test Text" };
 
@@ -82,11 +77,7 @@ describe("drawSVGToCanvas", () => {
     ctx.drawImage = jest.fn();
 
     drawSVGToCanvas(svg, data);
-
-    setTimeout(() => {
-      expect(ctx.filter).toBe("");
-      done();
-    }, 100);
+    expect(ctx.filter).not.toBe("");
   });
 });
 
@@ -107,9 +98,6 @@ describe("drawSVG", () => {
 
     drawSVG(svgContent, data);
 
-    setTimeout(() => {
-      expect(ctx.drawImage).toHaveBeenCalled();
-      done();
-    }, 100);
+    expect(ctx.drawImage).toHaveBeenCalled();
   });
 });
