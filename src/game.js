@@ -1,5 +1,7 @@
 import intro from "./assets/intro_text.svg";
 import click from "./assets/click.svg";
+import numberAndText from "./assets/numberandtext.svg";
+
 import { drawSVG } from "./svg.js";
 import { Note, Sequence } from "./TinyMusic.min.js";
 import { playSong } from "./music.js";
@@ -16,11 +18,12 @@ const frameDuration = 1000 / fps;
 
 // Check for mobile device
 if (navigator.maxTouchPoints > 0) {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  canvas.style.position = "absolute";
-  canvas.style.top = 0;
-  canvas.style.left = 0;
+  if (canvas.requestFullscreen) {
+    canvas.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) {
+    /* Safari */
+    canvas.webkitRequestFullscreen();
+  }
 }
 
 // Piirrä satunnaisia neliöitä
@@ -40,18 +43,15 @@ function staticLoop() {
       drawSVG(click, {});
       break;
     case 1:
-      drawSVG(intro, {});
       playSong();
+      drawSVG(intro, {});
       break;
     case 2:
       requestAnimationFrame(loop);
+      break;
     default:
       break;
   }
-}
-
-function introScene() {
-  drawSVG(click, { x: 0, y: 0 });
 }
 
 function startGame() {
@@ -66,8 +66,9 @@ function loop(timestamp) {
   const timeSinceLastRender = timestamp - lastRenderTime;
   if (timeSinceLastRender >= frameDuration) {
     lastRenderTime = timestamp;
-    drawRandomShapes();
-  }
+    // drawRandomShapes();
+    drawSVG(numberAndText, {x: 100, y: 100, text: "12"});
+  } 
   requestAnimationFrame(loop);
 }
 

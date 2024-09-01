@@ -10,11 +10,11 @@ function modifySVGText(svgString, newText) {
   const serializer = new XMLSerializer();
   return serializer.serializeToString(svgDocument);
 }
-
-function drawSVGToCanvas(svg, blur) {
+function drawSVGToCanvas(svg, data) {
+  const blur = data.blur ? data.blur : 0;
   const canvas = document.getElementById("game");
   const ctx = canvas.getContext("2d");
-  ctx.filter = "blur(" + blur + "px)";
+  //ctx.filter = "blur(" + .blur + "px)";
   const img = new Image();
   const svgData = "data:image/svg+xml;base64," + btoa(svg);
   img.onload = function () {
@@ -33,6 +33,7 @@ function drawSVGToCanvas(svg, blur) {
 }
 
 export const drawSVG = (svgContent, data) => {
-  const modifiedSVG = modifySVGText(svgContent, "13"); // Muokataan SVG
-  drawSVGToCanvas(modifiedSVG, 0); // Piirretään SVG canvakseen
+  console.log("data text  ", data.text ? "moi" : "hei");
+  const modifiedSVG = modifySVGText(svgContent, data.text); // Muokataan SVG
+  drawSVGToCanvas(modifiedSVG, data); // Piirretään SVG canvakseen
 };
