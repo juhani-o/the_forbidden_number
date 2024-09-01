@@ -1,32 +1,32 @@
 // webpack.config.js
 
-const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const TerserPlugin = require("terser-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 
 const outputDir = "dist";
 
 module.exports = {
-  entry: './src/game.js', // Sovelluksen pääsisääntulotiedosto
+  entry: "./src/game.js", // Sovelluksen pääsisääntulotiedosto
   output: {
-    filename: 'bundle.js', // Kääntämisen tuottama tiedosto
+    filename: "bundle.js", // Kääntämisen tuottama tiedosto
     path: path.resolve(__dirname, outputDir), // Kääntämisen tulostiedostojen hakemisto
     clean: true, // Tyhjennä 'dist'-hakemisto ennen uuden paketin luontia
   },
-  mode: 'production', // Aseta kääntämisen tila kehitykseen
+  mode: "production", // Aseta kääntämisen tila kehitykseen
   module: {
     rules: [
       {
         test: /\.js$/, // Sovella JavaScript-tiedostoihin
         exclude: /node_modules/, // Älä käytä node_modules-kansioon
         use: {
-          loader: 'babel-loader', // Käytä Babelia nykyaikaisten JavaScript-ominaisuuksien kääntämiseen
+          loader: "babel-loader", // Käytä Babelia nykyaikaisten JavaScript-ominaisuuksien kääntämiseen
         },
       },
       {
-        test: /\.svg$/,  // Etsitään .svg tiedostoja
-       use: 'raw-loader', 
+        test: /\.svg$/, // Etsitään .svg tiedostoja
+        use: "raw-loader",
       },
     ],
   },
@@ -45,7 +45,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      filename: 'index.html', // Generoidun HTML-tiedoston nimi
+      filename: "index.html", // Generoidun HTML-tiedoston nimi
       templateContent: ({ htmlWebpackPlugin }) => `
         <!DOCTYPE html>
         <html lang="fi">
@@ -67,15 +67,15 @@ module.exports = {
         </html>
       `,
     }),
-//    new CopyPlugin({
-//      patterns: [
-//        { from: "src/assets", to: "assets"}
-//      ],
-//    }),
+    //    new CopyPlugin({
+    //      patterns: [
+    //        { from: "src/assets", to: "assets"}
+    //      ],
+    //    }),
   ],
   devServer: {
     static: {
-	directory: path.join(__dirname, 'dist'),
+      directory: path.join(__dirname, "dist"),
     },
     compress: true, // Ota käyttöön gzip-pakkaus
     port: 9000, // Portti, jota kehityspalvelin käyttää
@@ -83,4 +83,3 @@ module.exports = {
     hot: true, // Ota käyttöön hot module replacement
   },
 };
-
