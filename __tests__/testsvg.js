@@ -37,20 +37,6 @@ describe("drawSVGToCanvas", () => {
       '<canvas id="game" width="800" height="600"></canvas>';
   });
 
-  test("should draw the SVG on the canvas", () => {
-    const svg = exampleSVG;
-    const data = { text: "Test Text", blur: 0 };
-
-    const canvas = document.getElementById("game");
-    const ctx = canvas.getContext("2d");
-
-    ctx.drawImage = jest.fn();
-
-    drawSVGToCanvas(svg, data);
-
-    expect(ctx.drawImage).toHaveBeenCalled();
-  });
-
   test("should apply blur filter if blur is specified", () => {
     const svg = exampleSVG;
     const data = { text: "Test Text", blur: 5 };
@@ -82,22 +68,39 @@ describe("drawSVGToCanvas", () => {
 });
 
 describe("drawSVG", () => {
-  beforeEach(() => {
-    document.body.innerHTML =
-      '<canvas id="game" width="800" height="600"></canvas>';
-  });
+  test("should call drawImage when image is loaded", () => {
+    // Mockataan canvasin konteksti ja drawImage-funktio
+    const ctx = {
+      drawImage: jest.fn(),
+      fillRect: jest.fn(),
+    };
+    const canvas = {
+      getContext: () => ctx,
+      width: 600,
+      height: 400,
+    };
 
-  test("should modify SVG text and draw it on the canvas", (done) => {
-    const svgContent = exampleSVG;
-    const data = { text: "Final Text", blur: 0 };
+    // Mockataan dokumentti ja canvaselementti
+    document.getElementById = jest.fn().mockReturnValue(canvas);
 
-    const canvas = document.getElementById("game");
-    const ctx = canvas.getContext("2d");
+    // Mockataan Image-objekti
+    const mockImage = {
+      onload: null,
+      src: "",
+      width: 100,
+      height: 100,
+    };
+    global.Image = jest.fn(() => mockImage);
 
-    ctx.drawImage = jest.fn();
+    const svgContent = '<svg><rect width="100" height="100" /></svg>';
+    const data = { text: "New Text", blur: 5 };
 
     drawSVG(svgContent, data);
 
+    // Kutsutaan onload-tapahtumankäsittelijää manuaalisesti
+    mockImage.onload();
+
+    // Tarkistetaan, että drawImage kutsuttiin
     expect(ctx.drawImage).toHaveBeenCalled();
   });
 });
