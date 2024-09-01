@@ -11,10 +11,11 @@ function modifySVGText(svgString, newText) {
   return serializer.serializeToString(svgDocument);
 }
 function drawSVGToCanvas(svg, data) {
-  const blur = data.blur ? data.blur : 0;
   const canvas = document.getElementById("game");
   const ctx = canvas.getContext("2d");
-  //ctx.filter = "blur(" + .blur + "px)";
+  if (data.blur) {
+    ctx.filter = "blur(" + data.blur + "px)";
+  }
   const img = new Image();
   const svgData = "data:image/svg+xml;base64," + btoa(svg);
   img.onload = function () {
@@ -33,7 +34,10 @@ function drawSVGToCanvas(svg, data) {
 }
 
 export const drawSVG = (svgContent, data) => {
-  console.log("data text  ", data.text ? "moi" : "hei");
   const modifiedSVG = modifySVGText(svgContent, data.text); // Muokataan SVG
   drawSVGToCanvas(modifiedSVG, data); // Piirretään SVG canvakseen
 };
+
+if (process.env.NODE_ENV === "test") {
+  module.exports = { drawSVG, modifySVGText, drawSVGToCanvas };
+}
