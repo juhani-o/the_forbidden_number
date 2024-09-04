@@ -1,8 +1,9 @@
 import intro from "./assets/intro_text.svg";
 import click from "./assets/click.svg";
 import numberAndText from "./assets/numberandtext.svg";
+import stage1label from "./assets/stage_1.svg";
 
-import { drawSVG } from "./svg.js";
+import { drawSVG, clearCanvas } from "./svg.js";
 import { Note, Sequence } from "./TinyMusic.min.js";
 import { playSong } from "./music.js";
 
@@ -26,28 +27,32 @@ if (navigator.maxTouchPoints > 0) {
   }
 }
 
-// Piirrä satunnaisia neliöitä
-function drawRandomShapes() {
-  ctx.fillStyle = `hsl(${Math.random() * 360}, 100%, 50%)`;
-  ctx.fillRect(
-    Math.random() * canvas.width,
-    Math.random() * canvas.height,
-    50,
-    50,
-  );
-}
-
 function staticLoop() {
   switch (runningStage) {
     case 0:
-      drawSVG(click, {});
+      drawSVG(intro, { x: 0, y: 100, w: canvas.width, h: 400 });
       break;
     case 1:
-      playSong();
-      drawSVG(intro, {});
+      clearCanvas();
+      drawSVG(stage1label, { x: 50, y: 100, w: canvas.width - 100, h: 400 });
       break;
-    case 2:
-      requestAnimationFrame(loop);
+    case 3:
+      clearCanvas();
+      for (var j = 0; j < canvas.height; j = j + 60) {
+        for (var i = 0; i < canvas.width - 60; i = i + 60) {
+          var n = Math.floor(Math.random() * 20);
+          var numText = n > 9 ? n : " " + n;
+          drawSVG(numberAndText, {
+            x: i,
+            y: j,
+            w: canvas.width / 10,
+            h: canvas.height / 10,
+            blur: 0,
+            text: numText,
+          });
+        }
+      }
+      // requestAnimationFrame(loop);
       break;
     default:
       break;
@@ -67,8 +72,8 @@ function loop(timestamp) {
   if (timeSinceLastRender >= frameDuration) {
     lastRenderTime = timestamp;
     // drawRandomShapes();
-    drawSVG(numberAndText, {x: 100, y: 100, text: "12"});
-  } 
+    drawSVG(numberAndText, { x: 100, y: 100, w: 100, h: 100, text: "12" });
+  }
   requestAnimationFrame(loop);
 }
 
