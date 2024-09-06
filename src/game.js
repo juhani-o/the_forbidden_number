@@ -13,7 +13,7 @@ const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 let runningStage = 0;
 let blur = 0;
-const numberBlockSize = 60;
+const numberBlockSize = 66.66666;
 
 let lastRenderTime = 0;
 const fps = 60;
@@ -70,9 +70,11 @@ function staticLoop() {
 }
 
 function startGame() {
-  canvas.addEventListener("click", () => {
-    runningStage = runningStage + 1;
-    staticLoop();
+  canvas.addEventListener("click", (event) => {
+    if (runningStage < 2) {
+      runningStage = runningStage + 1;
+    }
+    staticLoop(event);
   });
   staticLoop();
 }

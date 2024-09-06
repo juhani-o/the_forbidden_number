@@ -15,14 +15,12 @@ function drawSVGToCanvas(svg, data) {
   const { x, y, w, h, blur } = data;
   const canvas = document.getElementById("game");
   const ctx = canvas.getContext("2d");
-  if (data.blur) {
-    ctx.filter = "blur(" + data.blur + "px)";
-  }
   const img = new Image();
   const svgData = "data:image/svg+xml;base64," + btoa(svg);
   img.onload = function () {
+    ctx.filter = "blur(" + blur + "px)";
     ctx.drawImage(img, x, y, w, h); // Piirretään kuva canvaokseen
-    ctx.filter = "none";
+    console.log("blur ", ctx.filter);
   };
   img.src = svgData;
 }
