@@ -22,6 +22,7 @@ function drawSVGToCanvas(svg, data) {
   const svgData = "data:image/svg+xml;base64," + btoa(svg);
   img.onload = function () {
     ctx.drawImage(img, x, y, w, h); // Piirretään kuva canvaokseen
+    ctx.filter = "none";
   };
   img.src = svgData;
 }
