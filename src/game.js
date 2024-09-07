@@ -27,6 +27,8 @@ const bh = ch / numberBlockSize;
 
 const gametable = getStage1Table(bw, bh);
 
+let render = true;
+
 // Check for mobile device
 if (navigator.maxTouchPoints > 0) {
   if (canvas.requestFullscreen) {
@@ -48,45 +50,63 @@ function staticLoop() {
       break;
     case 2:
       clearCanvas();
-      for (var j = 0; j < bh; j = j + 1) {
-        for (var i = 0; i < bw; i = i + 1) {
-          const cell = gametable[i][j];
-          var numText = cell["num1"] > 9 ? cell["num1"] : " " + cell["num1"];
-          drawSVG(numberAndText, {
-            x: i * numberBlockSize,
-            y: j * numberBlockSize,
-            w: numberBlockSize,
-            h: numberBlockSize,
-            blur: cell["blur"],
-            text: numText,
-          });
-        }
-      }
-      // requestAnimationFrame(loop);
+      requestAnimationFrame(animLoop);
       break;
     default:
       break;
   }
 }
 
+function renderStage1() {
+  // clearCanvas();
+  for (var j = 0; j < bh - 2; j = j + 1) {
+    for (var i = 0; i < bw; i = i + 1) {
+      const cell = gametable[i][j];
+      var numText = cell["num1"] > 9 ? cell["num1"] : " " + cell["num1"];
+      drawSVG(numberAndText, {
+        x: i * numberBlockSize,
+        y: j * numberBlockSize,
+        w: numberBlockSize,
+        h: numberBlockSize,
+        blur: cell["blur"],
+        text: numText,
+      });
+    }
+  }
+}
+
+//function startGame() {
+//  canvas.addEventListener("click", (event) => {
+//    if (runningStage < 2) {
+//      runningStage = runningStage + 1;
+//    }
+//    staticLoop(event);
+//  });
+//  staticLoop();
+//}
+
 function startGame() {
-  canvas.addEventListener("click", (event) => {
+  function handleClick(event) {
     if (runningStage < 2) {
       runningStage = runningStage + 1;
+      staticLoop(event);
+    } else {
+      canvas.removeEventListener("click", handleClick);
     }
-    staticLoop(event);
-  });
+  }
+
+  canvas.addEventListener("click", handleClick);
   staticLoop();
 }
 
-function loop(timestamp) {
+function animLoop(timestamp) {
   const timeSinceLastRender = timestamp - lastRenderTime;
   if (timeSinceLastRender >= frameDuration) {
     lastRenderTime = timestamp;
-    // drawRandomShapes();
-    drawSVG(numberAndText, { x: 100, y: 100, w: 100, h: 100, text: "12" });
+    renderStage1();
+    render = false;
   }
-  requestAnimationFrame(loop);
+  requestAnimationFrame(animLoop);
 }
 
 window.onload = startGame;

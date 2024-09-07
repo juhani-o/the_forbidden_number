@@ -20,7 +20,6 @@ function drawSVGToCanvas(svg, data) {
   img.onload = function () {
     ctx.filter = "blur(" + blur + "px)";
     ctx.drawImage(img, x, y, w, h); // Piirretään kuva canvaokseen
-    console.log("blur ", ctx.filter);
   };
   img.src = svgData;
 }
