@@ -33,27 +33,17 @@ var timerBar = 0;
 let render = true;
 let lastClick = { x: -1, y: -1 };
 
-// Check for mobile device
-if (navigator.maxTouchPoints > 0) {
-  if (canvas.requestFullscreen) {
-    canvas.requestFullscreen();
-  } else if (elem.webkitRequestFullscreen) {
-    /* Safari */
-    canvas.webkitRequestFullscreen();
-  }
-}
-
 function processGameStage() {
   switch (runningStage) {
     case 0:
-      drawSVG(intro, { x: 0, y: 100, w: cw, h: 400 });
+      drawSVG(ctx, intro, { x: 0, y: 100, w: cw, h: 400 });
       break;
     case 1:
-      clearCanvas();
-      drawSVG(stage1label, { x: 50, y: 100, w: cw - 100, h: 400 });
+      clearCanvas(ctx);
+      drawSVG(ctx, stage1label, { x: 50, y: 100, w: cw - 100, h: 400 });
       break;
     case 2:
-      clearCanvas();
+      clearCanvas(ctx);
       requestAnimationFrame(animLoop);
       break;
     default:
@@ -62,12 +52,13 @@ function processGameStage() {
 }
 
 function renderStage1() {
-  clearCanvas();
+  console.log("render stage");
+  clearCanvas(ctx);
   for (var j = 0; j < bh - 2; j = j + 1) {
     for (var i = 0; i < bw; i = i + 1) {
       const cell = gametable[i][j];
       var numText = cell["num1"] > 9 ? cell["num1"] : " " + cell["num1"];
-      drawSVG(numberAndText, {
+      drawSVG(ctx, numberAndText, {
         x: i * numberBlockSize,
         y: j * numberBlockSize,
         w: numberBlockSize,
@@ -82,7 +73,7 @@ function renderStage1() {
 function handleClick(event) {
   if (runningStage < 2) {
     runningStage = runningStage + 1;
-    processGameStage(event);
+    processGameStage();
   } else if (runningStage == 2) {
     timerBar = timerBar - 1;
     lastClick = { x: event.clientX, y: event.clientY };
@@ -100,7 +91,7 @@ function animLoop(timestamp) {
   if (timeSinceLastRender >= frameDuration) {
     lastRenderTime = timestamp;
     if (render) renderStage1();
-    drawTimerBar(timerBar, ch - numberBlockSize, cw, ch);
+    drawTimerBar(ctx, timerBar, ch - numberBlockSize, cw, ch);
     timerBar = timerBar + 0.1;
     render = false;
   }

@@ -11,12 +11,11 @@ function modifySVGText(svgString, newText) {
   return serializer.serializeToString(svgDocument);
 }
 
-function drawSVGToCanvas(svg, data) {
+function drawSVGToCanvas(ctx, svg, data) {
   const { x, y, w, h, blur } = data;
   const canvas = document.getElementById("game");
-  const ctx = canvas.getContext("2d");
-  const img = new Image();
   const svgData = "data:image/svg+xml;base64," + btoa(svg);
+  const img = new Image();
   img.onload = function () {
     ctx.filter = "blur(" + blur + "px)";
     ctx.drawImage(img, x, y, w, h); // Piirretään kuva canvaokseen
@@ -24,15 +23,13 @@ function drawSVGToCanvas(svg, data) {
   img.src = svgData;
 }
 
-export function clearCanvas() {
-  const canvas = document.getElementById("game");
-  const ctx = canvas.getContext("2d");
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+export function clearCanvas(ctx) {
+  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 }
 
-export function drawSVG(svgContent, data) {
+export function drawSVG(ctx, svgContent, data) {
   const modifiedSVG = modifySVGText(svgContent, data.text); // Muokataan SVG
-  drawSVGToCanvas(modifiedSVG, data); // Piirretään SVG canvakseen
+  drawSVGToCanvas(ctx, modifiedSVG, data); // Piirretään SVG canvakseen
 }
 
 if (process.env.NODE_ENV === "test") {

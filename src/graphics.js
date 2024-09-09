@@ -1,6 +1,4 @@
-export function drawTimerBar(barAmount, startY, cw, ch) {
-  const canvas = document.getElementById("game");
-  const ctx = canvas.getContext("2d");
+export function drawTimerBar(ctx, barAmount, startY, cw, ch) {
   ctx.filter = "blur(0px)";
   ctx.fillStyle = "black";
   ctx.fillRect(0, startY, cw, ch);
