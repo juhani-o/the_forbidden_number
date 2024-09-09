@@ -75,23 +75,15 @@ function renderStage1() {
   }
 }
 
-//function startGame() {
-//  canvas.addEventListener("click", (event) => {
-//    if (runningStage < 2) {
-//      runningStage = runningStage + 1;
-//    }
-//    staticLoop(event);
-//  });
-//  staticLoop();
-//}
+function handleStaticContentActions(event) {
+  console.log("click shit ", event.clientX, event.clientY);
+}
 
 function startGame() {
   function handleClick(event) {
     if (runningStage < 2) {
       runningStage = runningStage + 1;
       staticLoop(event);
-    } else {
-      canvas.removeEventListener("click", handleClick);
     }
   }
 
@@ -103,7 +95,7 @@ function animLoop(timestamp) {
   const timeSinceLastRender = timestamp - lastRenderTime;
   if (timeSinceLastRender >= frameDuration) {
     lastRenderTime = timestamp;
-    renderStage1();
+    if (render) renderStage1();
     render = false;
   }
   requestAnimationFrame(animLoop);
