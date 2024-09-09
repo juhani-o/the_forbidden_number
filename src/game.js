@@ -52,7 +52,6 @@ function processGameStage() {
 }
 
 function renderStage1() {
-  console.log("render stage");
   clearCanvas(ctx);
   for (var j = 0; j < bh - 2; j = j + 1) {
     for (var i = 0; i < bw; i = i + 1) {
@@ -75,8 +74,12 @@ function handleClick(event) {
     runningStage = runningStage + 1;
     processGameStage();
   } else if (runningStage == 2) {
+    const rect = canvas.getBoundingClientRect();
     timerBar = timerBar - 1;
-    lastClick = { x: event.clientX, y: event.clientY };
+    lastClick = {
+      x: Math.floor((event.clientX - rect.left) / numberBlockSize),
+      y: Math.floor((event.clientY - rect.top) / numberBlockSize),
+    };
     render = true; // Clicked, now let's render and check what happens!
   }
 }
@@ -91,6 +94,8 @@ function animLoop(timestamp) {
   if (timeSinceLastRender >= frameDuration) {
     lastRenderTime = timestamp;
     if (render) renderStage1();
+    console.log("Last click ", lastClick.x, lastClick.y);
+
     drawTimerBar(ctx, timerBar, ch - numberBlockSize, cw, ch);
     timerBar = timerBar + 0.1;
     render = false;
