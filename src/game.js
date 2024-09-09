@@ -14,7 +14,7 @@ const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 let runningStage = 0;
 let blur = 0;
-const numberBlockSize = 66.66666;
+const numberBlockSize = 100;
 
 let lastRenderTime = 0;
 const fps = 60;
@@ -53,7 +53,7 @@ function processGameStage() {
 
 function renderStage1() {
   clearCanvas(ctx);
-  for (var j = 0; j < bh - 2; j = j + 1) {
+  for (var j = 0; j < bh - 1; j = j + 1) {
     for (var i = 0; i < bw; i = i + 1) {
       const cell = gametable[i][j];
       var numText = cell["num1"] > 9 ? cell["num1"] : " " + cell["num1"];
