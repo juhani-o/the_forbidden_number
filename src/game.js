@@ -7,6 +7,7 @@ import { drawSVG, clearCanvas } from "./svg.js";
 import { Note, Sequence } from "./TinyMusic.min.js";
 import { playSong } from "./music.js";
 import { getStage1Table } from "./utils.js";
+import { drawTimerBar } from "./graphics.js";
 
 import introText from "./assets/intro_text.svg";
 const canvas = document.getElementById("game");
@@ -27,7 +28,10 @@ const bh = ch / numberBlockSize;
 
 const gametable = getStage1Table(bw, bh);
 
+var timerBar = 0;
+
 let render = true;
+let lastClick = { x: -1, y: -1 };
 
 // Check for mobile device
 if (navigator.maxTouchPoints > 0) {
@@ -39,7 +43,7 @@ if (navigator.maxTouchPoints > 0) {
   }
 }
 
-function staticLoop() {
+function processGameStage() {
   switch (runningStage) {
     case 0:
       drawSVG(intro, { x: 0, y: 100, w: cw, h: 400 });
@@ -58,7 +62,7 @@ function staticLoop() {
 }
 
 function renderStage1() {
-  // clearCanvas();
+  clearCanvas();
   for (var j = 0; j < bh - 2; j = j + 1) {
     for (var i = 0; i < bw; i = i + 1) {
       const cell = gametable[i][j];
@@ -75,20 +79,20 @@ function renderStage1() {
   }
 }
 
-function handleStaticContentActions(event) {
-  console.log("click shit ", event.clientX, event.clientY);
+function handleClick(event) {
+  if (runningStage < 2) {
+    runningStage = runningStage + 1;
+    processGameStage(event);
+  } else if (runningStage == 2) {
+    timerBar = timerBar - 1;
+    lastClick = { x: event.clientX, y: event.clientY };
+    render = true; // Clicked, now let's render and check what happens!
+  }
 }
 
 function startGame() {
-  function handleClick(event) {
-    if (runningStage < 2) {
-      runningStage = runningStage + 1;
-      staticLoop(event);
-    }
-  }
-
-  canvas.addEventListener("click", handleClick);
-  staticLoop();
+  canvas.addEventListener("click", handleClick, () => handleClick(event));
+  processGameStage();
 }
 
 function animLoop(timestamp) {
@@ -96,6 +100,8 @@ function animLoop(timestamp) {
   if (timeSinceLastRender >= frameDuration) {
     lastRenderTime = timestamp;
     if (render) renderStage1();
+    drawTimerBar(timerBar, ch - numberBlockSize, cw, ch);
+    timerBar = timerBar + 0.1;
     render = false;
   }
   requestAnimationFrame(animLoop);

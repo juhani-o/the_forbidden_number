@@ -27,7 +27,7 @@ function drawSVGToCanvas(svg, data) {
 export function clearCanvas() {
   const canvas = document.getElementById("game");
   const ctx = canvas.getContext("2d");
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 export function drawSVG(svgContent, data) {
