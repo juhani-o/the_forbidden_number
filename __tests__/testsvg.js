@@ -47,7 +47,7 @@ describe("drawSVGToCanvas", () => {
     ctx.filter = "";
     ctx.drawImage = jest.fn();
 
-    drawSVGToCanvas(svg, data);
+    drawSVGToCanvas(ctx, svg, data);
 
     expect(ctx.filter).toBe("blur(5px)");
   });
@@ -95,7 +95,7 @@ describe("drawSVG", () => {
     const svgContent = '<svg><rect width="100" height="100" /></svg>';
     const data = { text: "New Text", blur: 5 };
 
-    drawSVG(svgContent, data);
+    drawSVG(ctx, svgContent, data);
 
     // Kutsutaan onload-tapahtumankäsittelijää manuaalisesti
     mockImage.onload();
