@@ -13,7 +13,6 @@ function modifySVGText(svgString, newText) {
 
 function drawSVGToCanvas(ctx, svg, data) {
   const { x, y, w, h, blur } = data;
-  const canvas = document.getElementById("game");
   const svgData = "data:image/svg+xml;base64," + btoa(svg);
   const img = new Image();
   img.onload = function () {
