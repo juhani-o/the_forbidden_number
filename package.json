@@ -1,7 +1,7 @@
 {
-  "name": "kontratest",
+  "name": "The Forbidden Number",
   "version": "1.0.0",
-  "description": "",
+  "description": "Attendee for 2024 js13k",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
@@ -10,7 +10,7 @@
     "clear_jest": "jest --clearCache"
   },
   "keywords": [],
-  "author": "",
+  "author": "Juhani Ovalo",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.25.2",

@@ -51,7 +51,7 @@ function processGameStage() {
   }
 }
 
-function renderStage1() {
+function renderStage1(clickLocation) {
   clearCanvas(ctx);
   for (var j = 0; j < bh - 1; j = j + 1) {
     for (var i = 0; i < bw; i = i + 1) {
@@ -80,7 +80,7 @@ function handleClick(event) {
       x: Math.floor((event.clientX - rect.left) / numberBlockSize),
       y: Math.floor((event.clientY - rect.top) / numberBlockSize),
     };
-    render = true; // Clicked, now let's render and check what happens!
+    render = true;
   }
 }
 
@@ -93,9 +93,9 @@ function animLoop(timestamp) {
   const timeSinceLastRender = timestamp - lastRenderTime;
   if (timeSinceLastRender >= frameDuration) {
     lastRenderTime = timestamp;
-    if (render) renderStage1();
-    console.log("Last click ", lastClick.x, lastClick.y);
-
+    if (render) {
+      renderStage1(lastClick);
+    }
     drawTimerBar(ctx, timerBar, ch - numberBlockSize, cw, ch);
     timerBar = timerBar + 0.1;
     render = false;
