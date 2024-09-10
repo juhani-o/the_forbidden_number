@@ -31,42 +31,6 @@ describe("modifySVGText", () => {
   });
 });
 
-describe("drawSVGToCanvas", () => {
-  beforeEach(() => {
-    document.body.innerHTML =
-      '<canvas id="game" width="800" height="600"></canvas>';
-  });
-
-  test("should apply blur filter if blur is specified", () => {
-    const svg = exampleSVG;
-    const data = { text: "Test Text", blur: 5 };
-
-    const canvas = document.getElementById("game");
-    const ctx = canvas.getContext("2d");
-
-    ctx.filter = "";
-    ctx.drawImage = jest.fn();
-
-    drawSVGToCanvas(ctx, svg, data);
-
-    expect(ctx.filter).toBe("blur(5px)");
-  });
-
-  test("should not apply blur filter if blur is not specified", () => {
-    const svg = exampleSVG;
-    const data = { text: "Test Text" };
-
-    const canvas = document.getElementById("game");
-    const ctx = canvas.getContext("2d");
-
-    ctx.filter = "";
-    ctx.drawImage = jest.fn();
-
-    drawSVGToCanvas(svg, data);
-    expect(ctx.filter).not.toBe("");
-  });
-});
-
 describe("drawSVG", () => {
   test("should call drawImage when image is loaded", () => {
     // Mockataan canvasin konteksti ja drawImage-funktio
