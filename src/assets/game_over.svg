@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg961"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="game_over.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview963"
+     pagecolor="#4e4e4e"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.8244669"
+     inkscape:cx="371.0673"
+     inkscape:cy="761.86639"
+     inkscape:window-width="3440"
+     inkscape:window-height="1368"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs958">
+    <rect
+       x="61.429546"
+       y="71.908684"
+       width="652.74377"
+       height="261.34769"
+       id="rect1447" />
+    <rect
+       x="61.429546"
+       y="71.908684"
+       width="652.74377"
+       height="261.34769"
+       id="rect1455" />
+    <rect
+       x="61.429546"
+       y="71.908684"
+       width="652.74377"
+       height="261.34769"
+       id="rect1461" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text1445"
+       style="font-size:32px;font-family:'URW Bookman';-inkscape-font-specification:'URW Bookman';text-align:center;white-space:pre;shape-inside:url(#rect1447);display:inline;fill:#565656;stroke:#ffffff;stroke-width:0.831496;stroke-miterlimit:3.5"><tspan
+         x="300.50577"
+         y="98.852203"
+         id="tspan1624">Game over!
+</tspan><tspan
+         x="283.36978"
+         y="138.8522"
+         id="tspan1626">Your result is
+</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,1.0436379,40.240592)"
+       id="text1453"
+       style="font-size:32px;font-family:'URW Bookman';-inkscape-font-specification:'URW Bookman';text-align:center;white-space:pre;shape-inside:url(#rect1455);display:inline;fill:#565656;stroke:#ffffff;stroke-width:0.831496;stroke-miterlimit:3.5"><tspan
+         x="250.82571"
+         y="98.852203"
+         id="tspan1628">Clicked numbers!
+</tspan><tspan
+         x="387.80176"
+         y="138.8522"
+         id="tspan1630">
+</tspan><tspan
+         x="308.79376"
+         y="178.8522"
+         id="tspan1632">Try again!
+</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.46232905,0,0,0.46232905,-76.509265,8.2068353)"
+       id="text1459"
+       style="font-size:32px;font-family:'URW Bookman';-inkscape-font-specification:'URW Bookman';text-align:center;white-space:pre;shape-inside:url(#rect1461);display:inline;fill:#e069db;fill-opacity:1;stroke:#ffffff;stroke-width:0.831496;stroke-miterlimit:3.5"
+       inkscape:label="number"><tspan
+         x="367.96173"
+         y="98.852203"
+         id="tspan1634">99
+</tspan></text>
+  </g>
+</svg>
