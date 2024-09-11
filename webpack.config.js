@@ -52,7 +52,7 @@ module.exports = {
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Webpack App with Canvas</title>
+            <title>The Forbidden Number</title>
             <style>
               html, body { background-color: green; display: flex; justify-content: center; }
               #game { background-color: black }

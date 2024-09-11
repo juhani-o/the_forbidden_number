@@ -2,6 +2,7 @@ import intro from "./assets/intro_text.svg";
 import click from "./assets/click.svg";
 import numberAndText from "./assets/numberandtext.svg";
 import stage1label from "./assets/stage_1.svg";
+import gameOver from "./assets/game_over.svg";
 
 import { drawSVG, clearCanvas } from "./svg.js";
 import { Note, Sequence } from "./TinyMusic.min.js";
@@ -33,6 +34,9 @@ var timerBar = 0;
 let render = true;
 let lastClick = { x: -1, y: -1 };
 
+let animId = 0;
+let level = 0;
+
 function processGameStage() {
   switch (runningStage) {
     case 0:
@@ -44,8 +48,11 @@ function processGameStage() {
       break;
     case 2:
       clearCanvas(ctx);
-      requestAnimationFrame(animLoop);
+      animId = requestAnimationFrame(animLoop);
       break;
+    case 3:
+      clearCanvas(ctx);
+      drawSVG(ctx, gameOver, { x: 50, y: 100, w: cw - 100, h: 400 });
     default:
       break;
   }
@@ -81,7 +88,12 @@ function processGameLogic(lastClick) {
       .flatMap((row) => row)
       .filter((number) => number.clicked !== true)
       .filter((number) => number.num1 !== 13);
-    console.log("Numerot ", numberAmount);
+    if (numberAmount.length == 0) {
+      level = level + 1;
+      timerBar = 0;
+      gameTable = getStage1Table(bw, bh - 1, level);
+      console.log("calculate new gametable ", gameTable, level)
+    }
   }
   render = true;
 }
@@ -102,7 +114,7 @@ function handleClick(event) {
 }
 
 function startGame() {
-  gameTable = getStage1Table(bw, bh - 1); // Remove last row because progess bar
+  gameTable = getStage1Table(bw, bh - 1, 0); // Remove last row because progess bar
   canvas.addEventListener("click", handleClick, () => handleClick(event));
   processGameStage();
 }
