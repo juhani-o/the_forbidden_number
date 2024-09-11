@@ -13,7 +13,15 @@ import { drawTimerBar } from "./graphics.js";
 import introText from "./assets/intro_text.svg";
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
-let runningStage = 0;
+
+const STAGES = {
+  INTRO: 0,
+  STAGE_1: 1,
+  STAGE_2: 2,
+  GAME_OVER: 3,
+};
+let runningStage = STAGES.INTRO;
+
 let blur = 0;
 const numberBlockSize = 100;
 
@@ -30,7 +38,6 @@ const bh = ch / numberBlockSize;
 let gameTable; // = getStage1Table(bw, bh - 1)c;
 
 var timerBar = 0;
-let timerBarPercent = cw / 100;
 
 let render = true;
 let lastClick = { x: -1, y: -1 };
@@ -41,18 +48,19 @@ let level = 0;
 
 function processGameStage() {
   switch (runningStage) {
-    case 0:
+    case STAGES.INTRO:
       drawSVG(ctx, intro, { x: 0, y: 100, w: cw, h: 400 });
       break;
-    case 1:
+    case STAGES.STAGE_1:
       clearCanvas(ctx);
       drawSVG(ctx, stage1label, { x: 50, y: 100, w: cw - 100, h: 400 });
       break;
-    case 2:
-      clearCanvas(ctx);
+    case STAGES.STAGE_2:
+      // clearCanvas(ctx);
+      console.log("request ");
       requestAnimationFrame(animLoop);
       break;
-    case 3:
+    case STAGES.GAME_OVER:
       clearCanvas(ctx);
       drawSVG(ctx, gameOver, {
         x: 50,
@@ -92,7 +100,7 @@ function processGameLogic(lastClick) {
   if (current["num1"] == 13) {
     timerBar = timerBar + 100;
     if (timerBar > cw) {
-      runningStage = 3;
+      runningStage = STAGES.GAME_OVER;
       processGameStage();
     }
   } else {
@@ -122,10 +130,13 @@ function initGameVariables() {
 }
 
 function handleClick(event) {
-  if (runningStage < 2) {
-    runningStage = runningStage + 1;
+  if (runningStage === STAGES.INTRO) {
+    runningStage = STAGES.STAGE_1;
     processGameStage();
-  } else if (runningStage == 2) {
+  } else if (runningStage == STAGES.STAGE_1) {
+    runningStage = STAGES.STAGE_2;
+    processGameStage();
+  } else if (runningStage == STAGES.STAGE_2) {
     const rect = canvas.getBoundingClientRect();
     timerBar = timerBar - 1;
     lastClick = {
@@ -133,7 +144,7 @@ function handleClick(event) {
       y: Math.floor((event.clientY - rect.top) / numberBlockSize),
     };
     processGameLogic(lastClick);
-  } else if (runningStage == 3) {
+  } else if (runningStage == STAGES.GAME_OVER) {
     initGameVariables();
     runningStage = 2;
     processGameStage();
@@ -142,12 +153,12 @@ function handleClick(event) {
 
 function startGame() {
   initGameVariables();
-  canvas.addEventListener("click", handleClick, () => handleClick(event));
+  canvas.addEventListener("click", handleClick);
   processGameStage();
 }
 
 function animLoop(timestamp) {
-  if (runningStage !== 2) return;
+  if (runningStage !== STAGES.STAGE_2) return;
   const timeSinceLastRender = timestamp - lastRenderTime;
   if (timeSinceLastRender >= frameDuration) {
     lastRenderTime = timestamp;
@@ -156,7 +167,7 @@ function animLoop(timestamp) {
       renderStage1();
     }
     if (timerBar > cw) {
-      runningStage = 3;
+      runningStage = STAGES.GAME_OVER;
       processGameStage();
     } else {
       drawTimerBar(ctx, timerBar, ch - numberBlockSize, cw, ch);
