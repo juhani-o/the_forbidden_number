@@ -1,4 +1,4 @@
-import { drawSVG, modifySVGText, drawSVGToCanvas } from "./../src/svg.js";
+import { drawSVG, modifySVGContent, drawSVGToCanvas } from "./../src/svg.js";
 import "jest-canvas-mock";
 
 const exampleSVG = `
@@ -7,11 +7,11 @@ const exampleSVG = `
 </svg>
 `;
 
-describe("modifySVGText", () => {
+describe("modifySVGContent", () => {
   test("should modify the text content of the SVG", () => {
     const svgString = exampleSVG;
     const newText = "New Text";
-    const modifiedSVG = modifySVGText(svgString, newText);
+    const modifiedSVG = modifySVGContent(svgString, newText, "tspan1594");
 
     expect(modifiedSVG).toContain(newText);
     expect(modifiedSVG).not.toContain("Old Text");
@@ -24,7 +24,7 @@ describe("modifySVGText", () => {
       </svg>
     `;
     const newText = "New Text";
-    const modifiedSVG = modifySVGText(svgString, newText);
+    const modifiedSVG = modifySVGContent(svgString, newText, "tspan1594");
 
     expect(modifiedSVG).toContain("Old Text");
     expect(modifiedSVG).not.toContain(newText);

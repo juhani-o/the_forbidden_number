@@ -39,5 +39,5 @@ export function drawSVG(ctx, svgContent, data) {
 }
 
 if (process.env.NODE_ENV === "test") {
-  module.exports = { drawSVG, modifySVGText, drawSVGToCanvas };
+  module.exports = { drawSVG, modifySVGContent, drawSVGToCanvas };
 }
