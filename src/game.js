@@ -26,7 +26,7 @@ const ch = canvas.height;
 const bw = cw / numberBlockSize;
 const bh = ch / numberBlockSize;
 
-const gametable = getStage1Table(bw, bh);
+let gameTable; // = getStage1Table(bw, bh - 1)c;
 
 var timerBar = 0;
 
@@ -51,11 +51,12 @@ function processGameStage() {
   }
 }
 
-function renderStage1(clickLocation) {
-  clearCanvas(ctx);
+function renderStage1() {
   for (var j = 0; j < bh - 1; j = j + 1) {
     for (var i = 0; i < bw; i = i + 1) {
-      const cell = gametable[i][j];
+      const cell = gameTable[i][j];
+      // Let's not render clicked numbers
+      if (cell.clicked == true) continue;
       var numText = cell["num1"] > 9 ? cell["num1"] : " " + cell["num1"];
       drawSVG(ctx, numberAndText, {
         x: i * numberBlockSize,
@@ -69,6 +70,22 @@ function renderStage1(clickLocation) {
   }
 }
 
+function processGameLogic(lastClick) {
+  let current = gameTable[lastClick.x][lastClick.y];
+  if (current["num1"] == 13) {
+    timerBar = timerBar + 100;
+  } else {
+    current.clicked = true;
+    const result = gameTable.flatMap((row) => row);
+    const numberAmount = gameTable
+      .flatMap((row) => row)
+      .filter((number) => number.clicked !== true)
+      .filter((number) => number.num1 !== 13);
+    console.log("Numerot ", numberAmount);
+  }
+  render = true;
+}
+
 function handleClick(event) {
   if (runningStage < 2) {
     runningStage = runningStage + 1;
@@ -80,11 +97,12 @@ function handleClick(event) {
       x: Math.floor((event.clientX - rect.left) / numberBlockSize),
       y: Math.floor((event.clientY - rect.top) / numberBlockSize),
     };
-    render = true;
+    processGameLogic(lastClick);
   }
 }
 
 function startGame() {
+  gameTable = getStage1Table(bw, bh - 1); // Remove last row because progess bar
   canvas.addEventListener("click", handleClick, () => handleClick(event));
   processGameStage();
 }
@@ -94,7 +112,8 @@ function animLoop(timestamp) {
   if (timeSinceLastRender >= frameDuration) {
     lastRenderTime = timestamp;
     if (render) {
-      renderStage1(lastClick);
+      clearCanvas(ctx);
+      renderStage1();
     }
     drawTimerBar(ctx, timerBar, ch - numberBlockSize, cw, ch);
     timerBar = timerBar + 0.1;

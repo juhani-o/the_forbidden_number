@@ -4,6 +4,7 @@ function getRandomNumber(min, max) {
 const table = [];
 
 export function getStage1Table(rows, cols) {
+  console.log("game table ", rows, cols);
   for (let i = 0; i < rows; i++) {
     const row = [];
     for (let j = 0; j < cols; j++) {
