@@ -30,11 +30,13 @@ const bh = ch / numberBlockSize;
 let gameTable; // = getStage1Table(bw, bh - 1)c;
 
 var timerBar = 0;
+let timerBarPercent = cw / 100;
 
 let render = true;
 let lastClick = { x: -1, y: -1 };
+let clickCount = 0;
+const timerFactor = 0.4;
 
-let animId = 0;
 let level = 0;
 
 function processGameStage() {
@@ -48,11 +50,18 @@ function processGameStage() {
       break;
     case 2:
       clearCanvas(ctx);
-      animId = requestAnimationFrame(animLoop);
+      requestAnimationFrame(animLoop);
       break;
     case 3:
       clearCanvas(ctx);
-      drawSVG(ctx, gameOver, { x: 50, y: 100, w: cw - 100, h: 400 });
+      drawSVG(ctx, gameOver, {
+        x: 50,
+        y: 100,
+        w: cw - 100,
+        h: 400,
+        number: String(clickCount),
+      });
+      break;
     default:
       break;
   }
@@ -79,9 +88,15 @@ function renderStage1() {
 
 function processGameLogic(lastClick) {
   let current = gameTable[lastClick.x][lastClick.y];
+  if (!current) return;
   if (current["num1"] == 13) {
     timerBar = timerBar + 100;
+    if (timerBar > cw) {
+      runningStage = 3;
+      processGameStage();
+    }
   } else {
+    clickCount = clickCount + 1;
     current.clicked = true;
     const result = gameTable.flatMap((row) => row);
     const numberAmount = gameTable
@@ -92,9 +107,17 @@ function processGameLogic(lastClick) {
       level = level + 1;
       timerBar = 0;
       gameTable = getStage1Table(bw, bh - 1, level);
-      console.log("calculate new gametable ", gameTable, level)
     }
+    render = true;
   }
+}
+
+function initGameVariables() {
+  gameTable = getStage1Table(bw, bh - 1, level); // Remove last row because progess bar
+  clearCanvas(ctx);
+  timerBar = 0;
+  level = 0;
+  clickCount = 0;
   render = true;
 }
 
@@ -110,16 +133,21 @@ function handleClick(event) {
       y: Math.floor((event.clientY - rect.top) / numberBlockSize),
     };
     processGameLogic(lastClick);
+  } else if (runningStage == 3) {
+    initGameVariables();
+    runningStage = 2;
+    processGameStage();
   }
 }
 
 function startGame() {
-  gameTable = getStage1Table(bw, bh - 1, 0); // Remove last row because progess bar
+  initGameVariables();
   canvas.addEventListener("click", handleClick, () => handleClick(event));
   processGameStage();
 }
 
 function animLoop(timestamp) {
+  if (runningStage !== 2) return;
   const timeSinceLastRender = timestamp - lastRenderTime;
   if (timeSinceLastRender >= frameDuration) {
     lastRenderTime = timestamp;
@@ -127,8 +155,13 @@ function animLoop(timestamp) {
       clearCanvas(ctx);
       renderStage1();
     }
-    drawTimerBar(ctx, timerBar, ch - numberBlockSize, cw, ch);
-    timerBar = timerBar + 0.1;
+    if (timerBar > cw) {
+      runningStage = 3;
+      processGameStage();
+    } else {
+      drawTimerBar(ctx, timerBar, ch - numberBlockSize, cw, ch);
+      timerBar = timerBar + (level / 3 + 1) * timerFactor;
+    }
     render = false;
   }
   requestAnimationFrame(animLoop);

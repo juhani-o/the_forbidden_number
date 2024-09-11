@@ -8,10 +8,9 @@ export function getStage1Table(rows, cols, level) {
     let row = [];
     for (let j = 0; j < cols; j++) {
       const num1 = getRandomNumber(1, 15); // numbers to use in blocks
-      const blur = getRandomNumber(3 + level, 7 + level); // random blur, add level to make harder to guess number
+      const blur = getRandomNumber(1 + level, 5 + level); // random blur, add level to make harder to guess number
       const clicked = false; // Boolean clicked
       row.push({ num1, blur, clicked });
-      console.log("row ", row);
     }
     // Lets ensure we have enough number 13
     for (let k = 0; k < cols / 3; k++) {

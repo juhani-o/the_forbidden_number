@@ -1,10 +1,10 @@
-function modifySVGText(svgString, newText) {
+function modifySVGContent(svgString, newText, elementId) {
   const parser = new DOMParser();
   const svgDocument = parser.parseFromString(svgString, "image/svg+xml");
 
-  const textElement = svgDocument.getElementById("tspan1594");
-  if (textElement) {
-    textElement.textContent = newText; // Vaihda teksti
+  const numberElement = svgDocument.getElementById(elementId);
+  if (numberElement) {
+    numberElement.textContent = newText;
   }
 
   const serializer = new XMLSerializer();
@@ -27,7 +27,14 @@ export function clearCanvas(ctx) {
 }
 
 export function drawSVG(ctx, svgContent, data) {
-  const modifiedSVG = modifySVGText(svgContent, data.text); // Muokataan SVG
+  let modifiedSVG = null;
+  if (data.text) {
+    modifiedSVG = modifySVGContent(svgContent, data.text, "tspan1594");
+  } else if (data.number) {
+    modifiedSVG = modifySVGContent(svgContent, data.number, "tspan1102");
+  } else {
+    modifiedSVG = svgContent;
+  }
   drawSVGToCanvas(ctx, modifiedSVG, data); // Piirretään SVG canvakseen
 }
 
