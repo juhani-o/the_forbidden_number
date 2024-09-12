@@ -1,6 +1,10 @@
+// Get random number between values
+
 function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+// Generate game table
 
 export function getStage1Table(rows, cols, level) {
   let table = [];
