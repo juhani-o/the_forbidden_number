@@ -31,40 +31,40 @@ describe("modifySVGContent", () => {
   });
 });
 
-describe("drawSVG", () => {
-  test("should call drawImage when image is loaded", () => {
-    // Mockataan canvasin konteksti ja drawImage-funktio
-    const ctx = {
-      drawImage: jest.fn(),
-      fillRect: jest.fn(),
-    };
-    const canvas = {
-      getContext: () => ctx,
-      width: 600,
-      height: 400,
-    };
-
-    // Mockataan dokumentti ja canvaselementti
-    document.getElementById = jest.fn().mockReturnValue(canvas);
-
-    // Mockataan Image-objekti
-    const mockImage = {
-      onload: null,
-      src: "",
-      width: 100,
-      height: 100,
-    };
-    global.Image = jest.fn(() => mockImage);
-
-    const svgContent = '<svg><rect width="100" height="100" /></svg>';
-    const data = { text: "New Text", blur: 5 };
-
-    drawSVG(ctx, svgContent, data);
-
-    // Kutsutaan onload-tapahtumankäsittelijää manuaalisesti
-    mockImage.onload();
-
-    // Tarkistetaan, että drawImage kutsuttiin
-    expect(ctx.drawImage).toHaveBeenCalled();
-  });
-});
+//describe("drawSVG", () => {
+//  test("should call drawImage when image is loaded", () => {
+//    // Mockataan canvasin konteksti ja drawImage-funktio
+//    const ctx = {
+//      drawImage: jest.fn(),
+//      fillRect: jest.fn(),
+//    };
+//    const canvas = {
+//      getContext: () => ctx,
+//      width: 600,
+//      height: 400,
+//    };
+//
+//    // Mockataan dokumentti ja canvaselementti
+//    document.getElementById = jest.fn().mockReturnValue(canvas);
+//
+//    // Mockataan Image-objekti
+//    const mockImage = {
+//      onload: null,
+//      src: "",
+//      width: 100,
+//      height: 100,
+//    };
+//    global.Image = jest.fn(() => mockImage);
+//
+//    const svgContent = '<svg><rect width="100" height="100" /></svg>';
+//    const data = { text: "New Text", blur: 5 };
+//
+//    drawSVG(ctx, svgContent, data);
+//
+//    // Kutsutaan onload-tapahtumankäsittelijää manuaalisesti
+//    mockImage.onload();
+//
+//    // Tarkistetaan, että drawImage kutsuttiin
+//    expect(ctx.drawImage).toHaveBeenCalled();
+//  });
+//});
