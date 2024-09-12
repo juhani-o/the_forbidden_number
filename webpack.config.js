@@ -54,7 +54,7 @@ module.exports = {
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>The Forbidden Number</title>
             <style>
-              html, body { background-color: green; display: flex; justify-content: center; }
+              html, body { background-color: "#a0a0a0"; display: flex; justify-content: center; }
               #game { background-color: black }
             </style>
         </head>
