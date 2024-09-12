@@ -10,9 +10,10 @@ function modifySVGContent(svgString, newText, elementId) {
   const parser = new DOMParser();
   const svgDocument = parser.parseFromString(svgString, "image/svg+xml");
 
-  const numberElement = svgDocument.getElementById(elementId);
-  if (numberElement) {
-    numberElement.textContent = newText;
+  const myTest = svgDocument.getElementById(elementId);
+  if (myTest) {
+    console.log("my test ", newText, elementId);
+    myTest.querySelector("tspan").textContent = newText;
   }
 
   const serializer = new XMLSerializer();
@@ -70,13 +71,15 @@ export function clearCanvas(ctx) {
 // so I had to find text element this way....
 
 export function drawSVG(ctx, svgContent, data) {
-  let modifiedSVG = null;
+  let modifiedSVG = svgContent;
   if (data.text) {
-    modifiedSVG = modifySVGContent(svgContent, data.text, "tspan1594");
-  } else if (data.number) {
-    modifiedSVG = modifySVGContent(svgContent, data.number, "tspan1037");
-  } else {
-    modifiedSVG = svgContent;
+    modifiedSVG = modifySVGContent(modifiedSVG, data.text, "myvalue");
+  }
+  if (data.number) {
+    modifiedSVG = modifySVGContent(modifiedSVG, data.number, "myvalue");
+  }
+  if (data.highScore) {
+    modifiedSVG = modifySVGContent(modifiedSVG, data.highScore, "highscore");
   }
   drawSVGToCanvas(ctx, modifiedSVG, data); // Piirretään SVG canvakseen
 }
