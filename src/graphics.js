@@ -1,3 +1,5 @@
+// Timer bar
+
 export function drawTimerBar(ctx, barAmount, startY, cw, ch) {
   ctx.filter = "blur(0px)";
   ctx.fillStyle = "black";
