@@ -2,39 +2,21 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="88.227089mm"
-   height="85.639519mm"
-   viewBox="0 0 88.227089 85.639519"
+   width="89.784622mm"
+   height="87.15136mm"
+   viewBox="0 0 89.784622 87.151359"
    version="1.1"
    id="svg961"
-   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
-   sodipodi:docname="game_over.svg"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
-     id="namedview963"
-     pagecolor="#4e4e4e"
-     bordercolor="#000000"
-     borderopacity="0.25"
-     inkscape:showpageshadow="2"
-     inkscape:pageopacity="0"
-     inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1"
-     inkscape:document-units="mm"
-     showgrid="false"
-     inkscape:zoom="1.8244669"
-     inkscape:cx="109.62106"
-     inkscape:cy="39.463582"
-     inkscape:window-width="3440"
-     inkscape:window-height="1368"
-     inkscape:window-x="0"
-     inkscape:window-y="1440"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
   <defs
      id="defs958">
+    <rect
+       x="-28.876728"
+       y="-25.890999"
+       width="405.07828"
+       height="396.09592"
+       id="rect2181" />
     <rect
        x="61.429546"
        y="71.908684"
@@ -53,56 +35,83 @@
        width="652.74377"
        height="261.34769"
        id="rect1461" />
+    <rect
+       x="61.429546"
+       y="71.908684"
+       width="652.74377"
+       height="261.34769"
+       id="rect2747" />
+    <rect
+       x="61.429546"
+       y="71.908684"
+       width="652.74377"
+       height="261.34769"
+       id="rect2786" />
   </defs>
   <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-67.670472,-20.168778)">
+     transform="translate(-67.670475,-207.28762)">
     <g
-       id="g877"
-       transform="matrix(1.2314509,0,0,1.2314509,-15.662394,-4.6680825)">
+       id="g492">
       <text
          xml:space="preserve"
-         transform="scale(0.26458333)"
+         transform="matrix(0.33157332,0,0,0.33157332,18.717726,256.12079)"
+         id="highscore"
+         style="font-size:32px;font-family:'URW Bookman';-inkscape-font-specification:'URW Bookman';text-align:center;white-space:pre;shape-inside:url(#rect2786);display:inline;fill:#565656;stroke:#ffffff;stroke-width:0.831496;stroke-miterlimit:3.5"><tspan
+           x="348.1217"
+           y="98.852203"
+           id="tspan3050">0000
+</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(0.33157332,0,0,0.33157332,-17.133522,182.0123)"
          id="text1445"
          style="font-size:32px;font-family:'URW Bookman';-inkscape-font-specification:'URW Bookman';text-align:center;white-space:pre;shape-inside:url(#rect1447);display:inline;fill:#565656;stroke:#ffffff;stroke-width:0.831496;stroke-miterlimit:3.5"><tspan
            x="300.50577"
            y="98.852203"
-           id="tspan1027">Game over!
+           id="tspan3052">Game over!
 </tspan><tspan
            x="283.36978"
            y="138.8522"
-           id="tspan1029">Your result is
+           id="tspan3054">Your result is
 </tspan></text>
       <text
          xml:space="preserve"
-         transform="matrix(0.26458333,0,0,0.26458333,1.0436379,40.240592)"
+         transform="matrix(0.33157332,0,0,0.33157332,-15.944073,226.01836)"
          id="text1453"
          style="font-size:32px;font-family:'URW Bookman';-inkscape-font-specification:'URW Bookman';text-align:center;white-space:pre;shape-inside:url(#rect1455);display:inline;fill:#565656;stroke:#ffffff;stroke-width:0.831496;stroke-miterlimit:3.5"><tspan
            x="250.82571"
            y="98.852203"
-           id="tspan1031">Clicked numbers!
-</tspan><tspan
-           x="387.80176"
-           y="138.8522"
-           id="tspan1033">
+           id="tspan3056">Clicked numbers!
 </tspan><tspan
            x="308.79376"
-           y="178.8522"
-           id="tspan1035">Try again!
+           y="138.8522"
+           id="tspan3058">Try again!
 </tspan></text>
       <text
          xml:space="preserve"
-         transform="matrix(0.46232905,0,0,0.46232905,-76.509265,8.2068353)"
-         id="text1459"
+         transform="matrix(0.57938638,0,0,0.57938638,-111.95587,189.12201)"
+         id="myvalue"
          style="font-size:32px;font-family:'URW Bookman';-inkscape-font-specification:'URW Bookman';text-align:center;white-space:pre;shape-inside:url(#rect1461);display:inline;fill:#e069db;fill-opacity:1;stroke:#ffffff;stroke-width:0.831496;stroke-miterlimit:3.5"
-         inkscape:label="number"
          x="0"
          y="0"><tspan
            x="367.96173"
            y="98.852203"
-           id="tspan1037">99
+           id="tspan3060">99
+</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,67.670475,207.28762)"
+         id="text2179"
+         style="font-size:32px;font-family:'URW Bookman';-inkscape-font-specification:'URW Bookman';text-align:center;white-space:pre;shape-inside:url(#rect2181);display:inline;fill:#e069db;stroke:#ffffff;stroke-width:0.831496;stroke-miterlimit:3.5" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.33157332,0,0,0.33157332,-24.053667,255.48252)"
+         id="text2745"
+         style="font-size:32px;font-family:'URW Bookman';-inkscape-font-specification:'URW Bookman';text-align:center;white-space:pre;shape-inside:url(#rect2747);display:inline;fill:#565656;stroke:#ffffff;stroke-width:0.831496;stroke-miterlimit:3.5"><tspan
+           x="302.02573"
+           y="98.852203"
+           id="tspan3062">high score:
 </tspan></text>
     </g>
   </g>
