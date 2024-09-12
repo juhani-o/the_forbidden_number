@@ -52,6 +52,7 @@ function processGameStage() {
       drawSVG(ctx, intro, { x: 0, y: 100, w: cw, h: 400 });
       break;
     case STAGES.STAGE_1:
+      playSong();
       clearCanvas(ctx);
       drawSVG(ctx, stage1label, { x: 50, y: 100, w: cw - 100, h: 400 });
       break;
