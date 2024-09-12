@@ -12,7 +12,6 @@ function modifySVGContent(svgString, newText, elementId) {
 
   const myTest = svgDocument.getElementById(elementId);
   if (myTest) {
-    console.log("my test ", newText, elementId);
     myTest.querySelector("tspan").textContent = newText;
   }
 
