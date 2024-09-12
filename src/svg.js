@@ -1,3 +1,5 @@
+const cachedImages = new Map();
+
 function modifySVGContent(svgString, newText, elementId) {
   const parser = new DOMParser();
   const svgDocument = parser.parseFromString(svgString, "image/svg+xml");
@@ -11,15 +13,26 @@ function modifySVGContent(svgString, newText, elementId) {
   return serializer.serializeToString(svgDocument);
 }
 
-function drawSVGToCanvas(ctx, svg, data) {
+async function drawSVGToCanvas(ctx, svg, data) {
   const { x, y, w, h, blur } = data;
-  const svgData = "data:image/svg+xml;base64," + btoa(svg);
-  const img = new Image();
-  img.onload = function () {
-    ctx.filter = "blur(" + blur + "px)";
-    ctx.drawImage(img, x, y, w, h); // Piirretään kuva canvaokseen
-  };
-  img.src = svgData;
+  let img = cachedImages.get(svg);
+
+  if (!img) {
+    const svgData = "data:image/svg+xml;base64," + btoa(svg);
+    img = new Image();
+
+    await new Promise((resolve, reject) => {
+      img.onload = resolve;
+      img.onerror = reject;
+      img.src = svgData;
+    });
+
+    cachedImages.set(svg, img);
+  }
+
+  ctx.filter = `blur(${blur}px)`;
+  ctx.drawImage(img, x, y, w, h);
+  ctx.filter = "none";
 }
 
 export function clearCanvas(ctx) {
