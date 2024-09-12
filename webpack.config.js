@@ -38,7 +38,11 @@ module.exports = {
           compress: {
             drop_console: true, // Poista console.log-kutsut
           },
+          format: {
+            comments: false,
+          },
         },
+        extractComments: false,
       }),
     ],
   },
