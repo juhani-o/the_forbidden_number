@@ -49,25 +49,20 @@ let level = 0;
 function processGameStage() {
   switch (runningStage) {
     case STAGES.INTRO:
-      drawSVG(ctx, intro, { x: 0, y: 100, w: cw, h: 400 });
+      drawSVG(ctx, intro, {});
       break;
     case STAGES.STAGE_1:
-      playSong();
+      // playSong();
       clearCanvas(ctx);
-      drawSVG(ctx, stage1label, { x: 50, y: 100, w: cw - 100, h: 400 });
+      drawSVG(ctx, stage1label, {});
       break;
     case STAGES.STAGE_2:
       // clearCanvas(ctx);
-      console.log("request ");
       requestAnimationFrame(animLoop);
       break;
     case STAGES.GAME_OVER:
       clearCanvas(ctx);
       drawSVG(ctx, gameOver, {
-        x: 50,
-        y: 100,
-        w: cw - 100,
-        h: 400,
         number: String(clickCount),
       });
       break;

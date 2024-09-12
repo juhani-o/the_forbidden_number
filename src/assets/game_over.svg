@@ -2,16 +2,13 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="71.644829mm"
-   height="69.543594mm"
-   viewBox="0 0 71.644829 69.543594"
+   width="88.227089mm"
+   height="85.639519mm"
+   viewBox="0 0 88.227089 85.639519"
    version="1.1"
    id="svg961"
    inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
    sodipodi:docname="game_over.svg"
-   inkscape:export-filename="game_over.svg"
-   inkscape:export-xdpi="96"
-   inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -27,13 +24,13 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="2.5801858"
-     inkscape:cx="102.31821"
-     inkscape:cy="77.901366"
+     inkscape:zoom="1.8244669"
+     inkscape:cx="109.62106"
+     inkscape:cy="39.463582"
      inkscape:window-width="3440"
      inkscape:window-height="1368"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="1440"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" />
   <defs
@@ -61,46 +58,52 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-67.670474,-207.28762)">
-    <text
-       xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,0,187.11884)"
-       id="text1445"
-       style="font-size:32px;font-family:'URW Bookman';-inkscape-font-specification:'URW Bookman';text-align:center;white-space:pre;shape-inside:url(#rect1447);display:inline;fill:#565656;stroke:#ffffff;stroke-width:0.831496;stroke-miterlimit:3.5"><tspan
-         x="300.50577"
-         y="98.852203"
-         id="tspan1092">Game over!
+     transform="translate(-67.670472,-20.168778)">
+    <g
+       id="g877"
+       transform="matrix(1.2314509,0,0,1.2314509,-15.662394,-4.6680825)">
+      <text
+         xml:space="preserve"
+         transform="scale(0.26458333)"
+         id="text1445"
+         style="font-size:32px;font-family:'URW Bookman';-inkscape-font-specification:'URW Bookman';text-align:center;white-space:pre;shape-inside:url(#rect1447);display:inline;fill:#565656;stroke:#ffffff;stroke-width:0.831496;stroke-miterlimit:3.5"><tspan
+           x="300.50577"
+           y="98.852203"
+           id="tspan1027">Game over!
 </tspan><tspan
-         x="283.36978"
-         y="138.8522"
-         id="tspan1094">Your result is
+           x="283.36978"
+           y="138.8522"
+           id="tspan1029">Your result is
 </tspan></text>
-    <text
-       xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,1.0436379,227.35943)"
-       id="text1453"
-       style="font-size:32px;font-family:'URW Bookman';-inkscape-font-specification:'URW Bookman';text-align:center;white-space:pre;shape-inside:url(#rect1455);display:inline;fill:#565656;stroke:#ffffff;stroke-width:0.831496;stroke-miterlimit:3.5"><tspan
-         x="250.82571"
-         y="98.852203"
-         id="tspan1096">Clicked numbers!
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,1.0436379,40.240592)"
+         id="text1453"
+         style="font-size:32px;font-family:'URW Bookman';-inkscape-font-specification:'URW Bookman';text-align:center;white-space:pre;shape-inside:url(#rect1455);display:inline;fill:#565656;stroke:#ffffff;stroke-width:0.831496;stroke-miterlimit:3.5"><tspan
+           x="250.82571"
+           y="98.852203"
+           id="tspan1031">Clicked numbers!
 </tspan><tspan
-         x="387.80176"
-         y="138.8522"
-         id="tspan1098">
+           x="387.80176"
+           y="138.8522"
+           id="tspan1033">
 </tspan><tspan
-         x="308.79376"
-         y="178.8522"
-         id="tspan1100">Try again!
+           x="308.79376"
+           y="178.8522"
+           id="tspan1035">Try again!
 </tspan></text>
-    <text
-       xml:space="preserve"
-       transform="matrix(0.46232905,0,0,0.46232905,-76.509265,195.32568)"
-       id="number"
-       style="font-size:32px;font-family:'URW Bookman';-inkscape-font-specification:'URW Bookman';text-align:center;white-space:pre;shape-inside:url(#rect1461);display:inline;fill:#e069db;fill-opacity:1;stroke:#ffffff;stroke-width:0.831496;stroke-miterlimit:3.5"
-       inkscape:label="number"><tspan
-         x="367.96173"
-         y="98.852203"
-         id="tspan1102">99
+      <text
+         xml:space="preserve"
+         transform="matrix(0.46232905,0,0,0.46232905,-76.509265,8.2068353)"
+         id="text1459"
+         style="font-size:32px;font-family:'URW Bookman';-inkscape-font-specification:'URW Bookman';text-align:center;white-space:pre;shape-inside:url(#rect1461);display:inline;fill:#e069db;fill-opacity:1;stroke:#ffffff;stroke-width:0.831496;stroke-miterlimit:3.5"
+         inkscape:label="number"
+         x="0"
+         y="0"><tspan
+           x="367.96173"
+           y="98.852203"
+           id="tspan1037">99
 </tspan></text>
+    </g>
   </g>
 </svg>
