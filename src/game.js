@@ -25,7 +25,7 @@ const STAGES = {
 let runningStage = STAGES.INTRO;
 
 let blur = 0;
-const numberBlockSize = 100;
+// const numberBlockSize = 100;
 
 // These are used for animated loop
 let lastRenderTime = 0;
@@ -36,6 +36,8 @@ const frameDuration = 1000 / fps;
 const cw = canvas.width;
 const ch = canvas.height;
 
+const numberBlockSize = cw / 8;
+
 const bw = cw / numberBlockSize;
 const bh = ch / numberBlockSize;
 
@@ -44,6 +46,7 @@ let gameTable;
 let timerBar = 0;
 let render = true;
 let lastClick = { x: -1, y: -1 };
+let lastClick2 = { x: -1, y: -1 };
 let clickCount = 0;
 const timerFactor = 0.4;
 
@@ -59,7 +62,7 @@ function processGameStage() {
       drawSVG(ctx, intro, {});
       break;
     case STAGES.STAGE_1:
-      playSong();
+      // playSong();
       clearCanvas(ctx);
       drawSVG(ctx, stage1label, {});
       break;
@@ -159,14 +162,11 @@ function handleClick(event) {
     runningStage = STAGES.STAGE_2;
     processGameStage();
   } else if (runningStage == STAGES.STAGE_2) {
-    // This is actual game stage, mouse location sent to
-    // processing function
-
     const rect = canvas.getBoundingClientRect();
     timerBar = timerBar - 1;
     lastClick = {
-      x: Math.floor((event.clientX - rect.left) / numberBlockSize),
-      y: Math.floor((event.clientY - rect.top) / numberBlockSize),
+      x: Math.floor((event.clientX - rect.x) * (800 / rect.width) / numberBlockSize),
+      y: Math.floor((event.clientY - rect.y) * (600 / rect.height) / numberBlockSize),
     };
     processGameLogic(lastClick);
   } else if (runningStage == STAGES.GAME_OVER) {

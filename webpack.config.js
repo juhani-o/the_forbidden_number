@@ -58,7 +58,7 @@ module.exports = {
             <title>The Forbidden Number</title>
             <style>
               html, body { background-color: #a0a0a0; display: flex; justify-content: center; }
-              #game { background-color: black }
+              canvas { background-color: black; margin: 20px; height: 90vh; aspect-ratio: 4 / 3; }
             </style>
         </head>
         <body>
